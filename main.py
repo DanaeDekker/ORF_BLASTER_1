@@ -67,9 +67,8 @@ def blast(headers, seqs):
 def parse_xml(header, seq):
     """ Parse the xml-file.
 
-    :return results: list - contains the results per alignment
-    :return organisms: list - contains the organism per alignment
-    :return proteins: list - contains the protein per alignment
+    :param header: string - header of the sequence
+    :param seq: string - sequence
     """
     # Define the variables.
     values = []
@@ -109,8 +108,8 @@ def parse_xml(header, seq):
             # Append the results.
             row = str(str(orf) + "\t" + str(seq) + "\t" + str(taxid) +
                       "\t" + str(scientific) + "\t" + str(values[1]) +
-                      "\t" + str(protein) + "\t" + str(values[3]) +
-                      "\t" + str(values[2]) + "\t" + str(values[4]) +
+                      "\t" + str(protein) + "\t" + str(values[2]) +
+                      "\t" + str(values[3]) + "\t" + str(values[4]) +
                       "\t" + str(values[5]) + "\t" + str(values[6]) +
                       "\t" + str(values[7]) + "\t" + str(values[8]) +
                       "\t" + str(values[9]) + "\t" + str(values[10]))
@@ -195,9 +194,9 @@ if __name__ == '__main__':
     # Parse the xml-files. If results are found, append the lists to
     # another list to combine them.
     with open("results.tsv", "w") as results_open:
-        results_open.write("orf\tseq\ttaxid\taccession\tprotein\tlength"
-                           "\texpect\tscore\tidentities\tpositives\t"
-                           "gaps\tsubject\tquery\tmatch\n")
+        results_open.write("orf\tseq\ttaxid\torganism\taccession\t"
+                           "protein\tlength\texpect\tscore\tidentities"
+                           "\tpositives\tgaps\tsubject\tquery\tmatch\n")
         for i in range(len(headers)):
             results = parse_xml(headers[i], seqs[i])
             for result in results:
